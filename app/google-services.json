@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922404960515",
+    "project_id": "safesync-contacts",
+    "storage_bucket": "safesync-contacts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922404960515:android:b25fc4dc50fc5834a5d136",
+        "android_client_info": {
+          "package_name": "com.flarestudio.safesynccontacts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcqyib9D7tGfGf6eGWMlcPIJSIlHXRv8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

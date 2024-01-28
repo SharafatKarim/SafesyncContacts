@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Safesync Contacts</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="realtime_database">RealTime Database</string>
+    <string name="database_TLDR">Kindly be advised that Google Firebase is presently utilized for real-time database services. Users are reminded to exercise caution and use this service at their own discretion and risk. Your understanding and adherence to this notice are appreciated.</string>
+    <string name="search_contact">Search Contact</string>
+    <string name="search_data">Search Data</string>
+    <string name="enter_phone_number_to_search">Enter phone number to search</string>
+    <string name="search_contact_info">Explore public data seamlessly through this section.</string>
+    <string name="add_update_contact">Add/ Update Contact</string>
+    <string name="update_contact_info">For security purposes, please note that contact additions should be carried out individually, ensuring explicit permission is granted before inserting someone\'s identity into the system. Your cooperation in adhering to this protocol is greatly appreciated.</string>
+    <string name="update_data">Add Data</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="enter_name">Enter name</string>
+</resources>
