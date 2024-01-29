@@ -12,4 +12,6 @@
     <string name="update_data">Add Data</string>
     <string name="enter_phone_number">Enter phone number</string>
     <string name="enter_name">Enter name</string>
+    <string name="app_slogan">Empowering your privacy.</string>
+    <string name="app_slogan_z"> Everyone has right to protect his contacts.</string>
 </resources>
