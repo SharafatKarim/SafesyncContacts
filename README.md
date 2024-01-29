@@ -1,3 +1,8 @@
+> [!WARNING]
+> **⚠️ Project Under Development.**
+> We are working hard to bring you exciting features and improvements. Stay tuned for the official release, scheduled for **February 18, 2024**.
+
+
 # Safesync Contacts
 
 An isolated contact management application integrating MySQL for local contacts and Firebase for a dynamic public database.
