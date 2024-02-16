@@ -43,6 +43,11 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    //bottom naviagation
     implementation("com.etebarian:meow-bottom-navigation:1.2.0")
+
+    //circular image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
 
 }
