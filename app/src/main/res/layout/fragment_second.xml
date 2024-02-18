@@ -116,8 +116,9 @@
 
     <Button
         android:id="@+id/messageButton"
-        android:layout_width="182dp"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="Message"
@@ -130,7 +131,7 @@
 
     <Button
         android:id="@+id/callButton"
-        android:layout_width="181dp"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="9dp"
@@ -140,33 +141,37 @@
         app:layout_constraintBottom_toTopOf="@+id/deleteButton"
         app:layout_constraintEnd_toStartOf="@+id/messageButton"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/insertButton"
-        android:layout_width="182dp"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="18dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="62dp"
         android:text="Insert"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/deleteButton"
         app:layout_constraintWidth_default="wrap" />
 
     <Button
         android:id="@+id/deleteButton"
-        android:layout_width="181dp"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="9dp"
         android:layout_marginBottom="62dp"
         android:text="Delete"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/insertButton"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_default="wrap" />
 
