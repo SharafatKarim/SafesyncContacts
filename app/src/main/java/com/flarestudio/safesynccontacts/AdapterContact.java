@@ -45,11 +45,11 @@ public class AdapterContact extends RecyclerView.Adapter<ContactViewHolder> {
         //set data in view
         holder.row_name.setText(name);
         holder.row_num.setText(phone);
-//        if (image.isEmpty()){
-//            holder.row_image.setImageResource(R.drawable.icon_transparent_full);
-//        }else {
+        if (image.isEmpty()){
+            holder.row_image.setImageResource(R.drawable.icon_transparent_full);
+        }else {
             holder.row_image.setImageURI(Uri.parse(image));
-//        }
+        }
     }
 
     @Override
