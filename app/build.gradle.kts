@@ -43,6 +43,10 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    implementation("androidx.appcompat:appcompat")
+    // For loading and tinting drawables on older versions of the platform
+    implementation("androidx.appcompat:appcompat-resources")
+
     //bottom naviagation
     implementation("com.etebarian:meow-bottom-navigation:1.2.0")
 

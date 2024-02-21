@@ -2,11 +2,14 @@ package com.flarestudio.safesynccontacts;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(@Nullable Context context) {
@@ -67,5 +70,111 @@ public class DbHelper extends SQLiteOpenHelper {
         // return id
         return id;
 
+    }
+
+
+    // get data
+    public ArrayList<ModelContact> getAllData() {
+        // create arrayList
+        ArrayList<ModelContact> arrayList = new ArrayList<>();
+        // sql command query
+        String selectQuery = "SELECT * FROM " + Constants.TABLE_NAME;
+
+        // get readable db
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all record and add to list
+        if (cursor.moveToFirst()) {
+            do {
+                ModelContact modelContact = new ModelContact(
+                        // only id is integer type
+                        "" + cursor.getInt(cursor.getColumnIndexOrThrow(Constants.C_ID)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NAME)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_IMAGE)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_PHONE)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_EMAIL)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NOTE)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_TIME)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_UPDATED_TIME)));
+                arrayList.add(modelContact);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return arrayList;
+    }
+
+    // search data in sql Database
+    public ArrayList<ModelContact> getSearchContact(String query) {
+
+        // it will return arraylist of modelContact class
+        ArrayList<ModelContact> contactList = new ArrayList<>();
+
+        // get readable database
+        SQLiteDatabase db = getReadableDatabase();
+
+        // query for search
+        String queryToSearch = "SELECT * FROM " + Constants.TABLE_NAME + " WHERE " + Constants.C_NAME + " LIKE '%"
+                + query + "%'";
+
+        Cursor cursor = db.rawQuery(queryToSearch, null);
+
+        // looping through all record and add to list
+        if (cursor.moveToFirst()) {
+            do {
+                ModelContact modelContact = new ModelContact(
+                        // only id is integer type
+                        "" + cursor.getInt(cursor.getColumnIndexOrThrow(Constants.C_ID)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NAME)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_IMAGE)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_PHONE)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_EMAIL)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NOTE)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_TIME)),
+                        "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_UPDATED_TIME)));
+                contactList.add(modelContact);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return contactList;
+
+    }
+
+    // Update Function to update data in database
+    public void updateContact(String id, String image, String name, String phone, String email, String note,
+                              String addedTime, String updatedTime) {
+
+        // get writable database to write data on db
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // create ContentValue class object to save data
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(Constants.C_IMAGE, image);
+        contentValues.put(Constants.C_NAME, name);
+        contentValues.put(Constants.C_PHONE, phone);
+        contentValues.put(Constants.C_EMAIL, email);
+        contentValues.put(Constants.C_NOTE, note);
+        contentValues.put(Constants.C_ADDED_TIME, addedTime);
+        contentValues.put(Constants.C_UPDATED_TIME, updatedTime);
+
+        // update data in row, It will return id of record
+        db.update(Constants.TABLE_NAME, contentValues, Constants.C_ID + " =? ", new String[]{id});
+
+        // close db
+        db.close();
+
+    }
+
+    // delete data by id
+    public void deleteContact(String id) {
+        // get writable database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // delete query
+        db.delete(Constants.TABLE_NAME, "WHERE" + " =? ", new String[]{id});
+
+        db.close();
     }
 }
