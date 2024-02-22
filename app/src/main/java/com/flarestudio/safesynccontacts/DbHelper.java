@@ -177,4 +177,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+    // delete all data
+    public void deleteAllContact() {
+        // get writable database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // query for delete
+        db.execSQL("DELETE FROM " + Constants.TABLE_NAME);
+        db.close();
+    }
+
 }

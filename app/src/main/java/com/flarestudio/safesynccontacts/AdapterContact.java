@@ -1,6 +1,7 @@
 package com.flarestudio.safesynccontacts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,7 +70,9 @@ public class AdapterContact extends RecyclerView.Adapter<ContactViewHolder> {
 //                fragmentTransaction.replace(R.id.frameLayout, new SecondFragment());
 //                fragmentTransaction.commit();
 
-
+                Intent intent = new Intent(context, ContactDetails.class);
+                intent.putExtra("contactId", id);
+                context.startActivity(intent);
             }
         });
     }

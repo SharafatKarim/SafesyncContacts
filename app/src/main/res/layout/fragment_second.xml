@@ -110,40 +110,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notes_BOX" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/messageButton"
-        android:layout_width="150sp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="Message"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/insertButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/callButton"
-        app:layout_constraintWidth_default="wrap" />
-
-    <Button
-        android:id="@+id/callButton"
-        android:layout_width="150sp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="8dp"
-        android:text="Call"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/deleteButton"
-        app:layout_constraintEnd_toStartOf="@+id/messageButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/insertButton"
         android:layout_width="150sp"
@@ -151,12 +119,13 @@
         android:layout_marginStart="18dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="62dp"
-        android:text="Insert"
+        android:text="Add contact"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/deleteButton"
+        app:layout_constraintVertical_weight="1"
         app:layout_constraintWidth_default="wrap" />
 
     <Button
@@ -166,14 +135,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="9dp"
         android:layout_marginBottom="62dp"
-        android:text="Delete"
+        android:shadowColor="#F44336"
+        android:text="Delete all"
+        android:textColorHighlight="#F44336"
+        android:textColorHint="#F44336"
+        android:textColorLink="#F44336"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/insertButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintWidth_default="wrap"
+        app:strokeColor="#F44336" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,6 +70,14 @@ public class SecondFragment extends Fragment {
         });
 
         Button insert = view.findViewById(R.id.insertButton);
+        Button delete_all = view.findViewById(R.id.deleteButton);
+
+        delete_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.deleteAllContact();
+            }
+        });
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
