@@ -53,5 +53,6 @@ dependencies {
     //circular image
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
-
+    // extra fragment methods (parent fragment)
+    implementation(libs.fragment)
 }

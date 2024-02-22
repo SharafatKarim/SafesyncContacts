@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -60,6 +62,14 @@ public class AdapterContact extends RecyclerView.Adapter<ContactViewHolder> {
             @Override
             public void onClick(View v) {
                 Log.d("CLICKED", "onClick :: " + id);
+
+//                ::: Fragment switching :::
+//                FragmentTransaction fragmentTransaction =
+//                        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.frameLayout, new SecondFragment());
+//                fragmentTransaction.commit();
+
+
             }
         });
     }
