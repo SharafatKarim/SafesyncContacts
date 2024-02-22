@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -23,12 +24,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ContactDetails extends AppCompatActivity {
 
     //view
-    private TextView nameTv,phoneTv,emailTv,addedTimeTv,updatedTimeTv,noteTv;
+    private TextView nameTv, phoneTv, emailTv, addedTimeTv, updatedTimeTv, noteTv;
     private CircleImageView profileIv;
 
     private String id;
     // DB Helper
     private DbHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,39 +56,72 @@ public class ContactDetails extends AppCompatActivity {
         addedTimeTv = findViewById(R.id.addtime_BOX);
         updatedTimeTv = findViewById(R.id.edit_time_BOX);
         noteTv = findViewById(R.id.notes_BOX);
-
         profileIv = findViewById(R.id.circle_image);
 
+        // EVENTS
+        // Delete contact
+        Button delete = findViewById(R.id.deleteButton);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.deleteContact(id);
+            }
+        });
+
         loadDataById();
+
+        // Call and message
+        Button call = findViewById(R.id.callButton);
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:" + phoneTv.getText()));
+                startActivity(callIntent);
+            }
+        });
+
+        Button message = findViewById(R.id.messageButton);
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneTv.getText()));
+//                Intent messageIntent = new Intent(Intent.CATEGORY_APP_MESSAGING);
+//                messageIntent.setData(Uri.parse("tel:" + phoneTv.getText()));
+//                smsIntent.putExtra("hi");
+                startActivity(smsIntent);
+            }
+        });
+
     }
 
     private void loadDataById() {
         //get data from database
         //query for find data by id
-        String selectQuery =  "SELECT * FROM "+Constants.TABLE_NAME + " WHERE " + Constants.C_ID + " =\"" + id + "\"";
+        String selectQuery = "SELECT * FROM " + Constants.TABLE_NAME + " WHERE " + Constants.C_ID + " =\"" + id + "\"";
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery,null);
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 //get data
-                String name =  ""+cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NAME));
-                String image = ""+cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_IMAGE));
-                String phone = ""+cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_PHONE));
-                String email = ""+cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_EMAIL));
-                String note = ""+cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NOTE));
-                String addTime = ""+cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_TIME));
-                String updateTime = ""+cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_UPDATED_TIME));
+                String name = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NAME));
+                String image = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_IMAGE));
+                String phone = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_PHONE));
+                String email = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_EMAIL));
+                String note = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NOTE));
+                String addTime = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_TIME));
+                String updateTime = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_UPDATED_TIME));
 
                 //convert time to dd/mm/yy hh:mm:aa format
                 Calendar calendar = Calendar.getInstance(Locale.getDefault());
 
                 calendar.setTimeInMillis(Long.parseLong(addTime));
-                String timeAdd = ""+ DateFormat.format("dd/MM/yy hh:mm:aa",calendar);
+                String timeAdd = "" + DateFormat.format("dd/MM/yy hh:mm:aa", calendar);
 
                 calendar.setTimeInMillis(Long.parseLong(updateTime));
-                String timeUpdate = ""+ DateFormat.format("dd/MM/yy hh:mm:aa",calendar);
+                String timeUpdate = "" + DateFormat.format("dd/MM/yy hh:mm:aa", calendar);
 
                 //set data
                 nameTv.setText(name);
@@ -96,13 +131,13 @@ public class ContactDetails extends AppCompatActivity {
                 addedTimeTv.setText(timeAdd);
                 updatedTimeTv.setText(timeUpdate);
 
-                if (image.isEmpty()){
+                if (image.isEmpty()) {
                     profileIv.setImageResource(R.drawable.icon_transparent_full);
-                }else {
+                } else {
                     profileIv.setImageURI(Uri.parse(image));
                 }
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         cursor.close();
