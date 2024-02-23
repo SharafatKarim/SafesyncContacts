@@ -75,8 +75,6 @@ public class EditActivity extends AppCompatActivity {
         nameTv = findViewById(R.id.name_BOX);
         phoneTv = findViewById(R.id.phone_BOX);
         emailTv = findViewById(R.id.email_BOX);
-//        addedTimeTv = findViewById(R.id.addtime_BOX);
-//        updatedTimeTv = findViewById(R.id.edit_time_BOX);
         noteTv = findViewById(R.id.notes_BOX);
         imageView = findViewById(R.id.circle_image);
 
@@ -219,7 +217,6 @@ public class EditActivity extends AppCompatActivity {
         galleryIntent.setType("image/*"); // only Image
 
         startActivityForResult(galleryIntent, IMAGE_FROM_GALLERY_CODE);
-//        new Activity().startActivityForResult(galleryIntent, IMAGE_FROM_GALLERY_CODE);
     }
 
     private void pickFromCamera() {
@@ -238,7 +235,6 @@ public class EditActivity extends AppCompatActivity {
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
 
         startActivityForResult(cameraIntent, IMAGE_FROM_CAMERA_CODE);
-//        new Activity().startActivityForResult(cameraIntent, IMAGE_FROM_CAMERA_CODE);
     }
 
     //check camera permission
@@ -263,18 +259,6 @@ public class EditActivity extends AppCompatActivity {
     private void requestStoragePermission() {
         ActivityCompat.requestPermissions(this, cameraPermission, STORAGE_PERMISSION_CODE);
     }
-
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if ((requestCode == IMAGE_FROM_GALLERY_CODE || requestCode == IMAGE_FROM_CAMERA_CODE) && data != null) {
-//            image_uri = data.getData();
-//            imageView.setImageURI(image_uri);
-//        } else {
-//            Toast.makeText(this, "Something wrong", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

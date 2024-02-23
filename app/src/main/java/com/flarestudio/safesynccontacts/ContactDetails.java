@@ -99,7 +99,7 @@ public class ContactDetails extends AppCompatActivity {
             public void onClick(View v) {
                 Intent editIntent = new Intent(getBaseContext(), EditActivity.class);
                 editIntent.putExtra("contactId", id);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                editIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(editIntent);
                 finish();
             }
