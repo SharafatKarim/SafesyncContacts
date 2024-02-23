@@ -38,7 +38,6 @@ public class SecondFragment extends Fragment {
 
     private ImageView imageView;
     private EditText name, phone, email, notes;
-    private boolean is_edit_mode = false;
     private Uri image_uri;
     private DbHelper dbHelper;
 
@@ -106,7 +105,7 @@ public class SecondFragment extends Fragment {
             Toast.makeText(getContext(), "Please Enter Name and Phone", Toast.LENGTH_SHORT).show();
         } else {
             long id = dbHelper.insertContact(image_data, name_data, phone_data, email_data, notes_data, timeStamp, timeStamp);
-            Toast.makeText(getContext(), "Contact Added :: " + id, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Contact added", Toast.LENGTH_SHORT).show();
         }
     }
 

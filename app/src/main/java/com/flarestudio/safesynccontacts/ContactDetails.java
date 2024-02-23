@@ -65,9 +65,12 @@ public class ContactDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dbHelper.deleteContact(id);
+
+                finish();
+                Intent parent_intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(parent_intent);
             }
         });
-
         loadDataById();
 
         // Call and message
@@ -86,13 +89,22 @@ public class ContactDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneTv.getText()));
-//                Intent messageIntent = new Intent(Intent.CATEGORY_APP_MESSAGING);
-//                messageIntent.setData(Uri.parse("tel:" + phoneTv.getText()));
-//                smsIntent.putExtra("hi");
                 startActivity(smsIntent);
             }
         });
 
+        Button edit = findViewById(R.id.editButton);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editIntent = new Intent(getBaseContext(), EditActivity.class);
+                editIntent.putExtra("contactId", id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                this.startActivity(editIntent);
+                startActivity(editIntent);
+                finish();
+            }
+        });
     }
 
     private void loadDataById() {
