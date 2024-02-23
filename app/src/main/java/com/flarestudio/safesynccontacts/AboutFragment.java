@@ -3,13 +3,12 @@ package com.flarestudio.safesynccontacts;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 public class AboutFragment extends Fragment {
     @Override
@@ -23,7 +22,8 @@ public class AboutFragment extends Fragment {
                 String GITHUB_URL = "https://github.com/SharafatKarim/SafeSyncContacts";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL));
                 startActivity(intent);
-            }});
+            }
+        });
 
         Button issue = view.findViewById(R.id.Issue_SUBMISSION);
         issue.setOnClickListener(new View.OnClickListener() {

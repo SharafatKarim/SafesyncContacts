@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -203,18 +204,17 @@ public class SecondFragment extends Fragment {
         ActivityCompat.requestPermissions(requireActivity(), cameraPermission, STORAGE_PERMISSION_CODE);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("permissionCHECK", "onResult :: accessed");
         if (resultCode == RESULT_OK || requestCode == IMAGE_FROM_GALLERY_CODE || requestCode == IMAGE_FROM_CAMERA_CODE) {
-//            if (requestCode == IMAGE_FROM_GALLERY_CODE || requestCode == IMAGE_FROM_CAMERA_CODE){
 
-            //cropped image received
-//                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//                imageUri = result.getUri();
-//                profileIv.setImageURI(imageUri);
             assert data != null;
+//            Bundle extras = data.getExtras();
+//            Bitmap imageBitmap = (Bitmap) extras.get("data");
+//            imageView.setImageBitmap(imageBitmap);
+
             image_uri = data.getData();
             imageView.setImageURI(image_uri);
         } else {

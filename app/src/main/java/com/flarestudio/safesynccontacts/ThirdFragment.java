@@ -79,8 +79,7 @@ public class ThirdFragment extends Fragment {
                 MiniContact contact = new MiniContact(nameText.getText().toString().trim(), numberText.getText().toString().trim());
                 if (duplicateSearch(contact.getName(), contact.getNumber())) {
                     Toast.makeText(getContext(), "Contact already exists", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     String key = myRef.push().getKey();
                     assert key != null;
                     myRef.child(key).setValue(contact);
@@ -116,6 +115,7 @@ public class ThirdFragment extends Fragment {
                     contacts.add(contact);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("DataReadError", "Failed to read value.", error.toException());

@@ -146,25 +146,11 @@ public class EditActivity extends AppCompatActivity {
                 note = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_NOTE));
                 addedTimeTv = "" + cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_TIME));
 
-                //convert time to dd/mm/yy hh:mm:aa format
-//                Calendar calendar = Calendar.getInstance(Locale.getDefault());
-//
-//                calendar.setTimeInMillis(Long.parseLong(addTime));
-//                String timeAdd = "" + DateFormat.format("dd/MM/yy hh:mm:aa", calendar);
-//
-//                calendar.setTimeInMillis(Long.parseLong(updateTime));
-//                String timeUpdate = "" + DateFormat.format("dd/MM/yy hh:mm:aa", calendar);
-
                 //set data
                 nameTv.setText(name);
                 phoneTv.setText(phone);
                 emailTv.setText(email);
                 noteTv.setText(note);
-
-//                addedTimeTv.setText(timeAdd);
-//                addedTimeTv = timeAdd;
-//                updatedTimeTv.setText(timeUpdate);
-//                updatedTimeTv = timeUpdate;
 
                 if (image.isEmpty()) {
                     imageView.setImageResource(R.drawable.icon_transparent_full);
@@ -280,19 +266,10 @@ public class EditActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == IMAGE_FROM_GALLERY_CODE || requestCode == IMAGE_FROM_CAMERA_CODE) && data != null) {
-//            if (requestCode == IMAGE_FROM_GALLERY_CODE || requestCode == IMAGE_FROM_CAMERA_CODE){
-
-            //cropped image received
-//                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//                imageUri = result.getUri();
-//                profileIv.setImageURI(imageUri);
             image_uri = data.getData();
             imageView.setImageURI(image_uri);
         } else {
             Toast.makeText(this, "Something wrong", Toast.LENGTH_SHORT).show();
-            //for error handling
-//                Toast.makeText(getApplicationContext(), "Something wrong", Toast.LENGTH_SHORT).show();
         }
-//        }
     }
 }

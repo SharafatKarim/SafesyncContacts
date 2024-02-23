@@ -100,7 +100,6 @@ public class ContactDetails extends AppCompatActivity {
                 Intent editIntent = new Intent(getBaseContext(), EditActivity.class);
                 editIntent.putExtra("contactId", id);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                this.startActivity(editIntent);
                 startActivity(editIntent);
                 finish();
             }

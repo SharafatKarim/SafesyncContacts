@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,13 +17,10 @@ public class AdapterContact extends RecyclerView.Adapter<ContactViewHolder> {
 
     private Context context;
     private ArrayList<ModelContact> contactList;
-//    private SelectListener listener;
 
     public AdapterContact(Context context, ArrayList<ModelContact> contactList) {
         this.context = context;
         this.contactList = contactList;
-//        this.listener = listener;
-//        dbHelper = new DbHelper(context);
     }
 
     @NonNull
@@ -44,10 +39,6 @@ public class AdapterContact extends RecyclerView.Adapter<ContactViewHolder> {
         String image = modelContact.getImage();
         String name = modelContact.getName();
         String phone = modelContact.getPhone();
-        String email = modelContact.getEmail();
-        String note = modelContact.getNote();
-        String addedTime = modelContact.getAddedTime();
-        String updatedTime = modelContact.getUpdatedTime();
 
         //set data in view
         holder.row_name.setText(name);
@@ -63,12 +54,6 @@ public class AdapterContact extends RecyclerView.Adapter<ContactViewHolder> {
             @Override
             public void onClick(View v) {
                 Log.d("CLICKED", "onClick :: " + id);
-
-//                ::: Fragment switching :::
-//                FragmentTransaction fragmentTransaction =
-//                        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.frameLayout, new SecondFragment());
-//                fragmentTransaction.commit();
 
                 Intent intent = new Intent(context, ContactDetails.class);
                 intent.putExtra("contactId", id);
