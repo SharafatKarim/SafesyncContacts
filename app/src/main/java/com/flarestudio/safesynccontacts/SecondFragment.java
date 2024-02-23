@@ -28,6 +28,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.util.Objects;
+
 
 public class SecondFragment extends Fragment {
 
@@ -204,25 +209,58 @@ public class SecondFragment extends Fragment {
         ActivityCompat.requestPermissions(requireActivity(), cameraPermission, STORAGE_PERMISSION_CODE);
     }
 
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Log.d("permissionCHECK", "onResult :: accessed");
+//        if (resultCode == RESULT_OK || requestCode == IMAGE_FROM_GALLERY_CODE || requestCode == IMAGE_FROM_CAMERA_CODE) {
+//
+//            assert data != null;
+//            image_uri = data.getData();
+//            imageView.setImageURI(image_uri);
+//        } else {
+//            Toast.makeText(getContext(), "Something wrong", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("permissionCHECK", "onResult :: accessed");
-        if (resultCode == RESULT_OK || requestCode == IMAGE_FROM_GALLERY_CODE || requestCode == IMAGE_FROM_CAMERA_CODE) {
+        Log.d("CropOut", "accessed :: on result");
+        if (resultCode == RESULT_OK){
+            if (requestCode == IMAGE_FROM_GALLERY_CODE){
+                // picked image from gallery
+                //crop image
+                assert data != null;
+                CropImage.activity(data.getData())
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(1,1)
+                        .start(requireActivity());
 
-            assert data != null;
-//            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            imageView.setImageBitmap(imageBitmap);
+            }else if (requestCode == IMAGE_FROM_CAMERA_CODE){
+                //picked image from camera
+                //crop Image
+                CropImage.activity(image_uri)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(1,1)
+                        .start(requireActivity());
+            }else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
-            image_uri = data.getData();
-            imageView.setImageURI(image_uri);
-        } else {
-            Toast.makeText(getContext(), "Something wrong", Toast.LENGTH_SHORT).show();
-            //for error handling
-//                Toast.makeText(getApplicationContext(), "Something wrong", Toast.LENGTH_SHORT).show();
+                //cropped image received
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                assert result != null;
+                image_uri = result.getUri();
+                imageView.setImageURI(image_uri);
+
+                Log.d("CropOut", "inside the block");
+            }
+            else {
+                //for error handling
+                Toast.makeText(getContext(), "Something wrong", Toast.LENGTH_SHORT).show();
+
+                Log.d("CropOut", "final try catch");
+            }
         }
-//        }
     }
 }
 
