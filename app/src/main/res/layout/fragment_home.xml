@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="All contacts"
+            android:text="@string/all_contacts"
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

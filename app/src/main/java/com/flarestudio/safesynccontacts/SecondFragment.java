@@ -131,7 +131,7 @@ public class SecondFragment extends Fragment {
         if (name_data.isEmpty() || phone_data.isEmpty()) {
             Toast.makeText(getContext(), "Please Enter Name and Phone", Toast.LENGTH_SHORT).show();
         } else {
-            long id = dbHelper.insertContact(image_data, name_data, phone_data, email_data, notes_data, timeStamp, timeStamp);
+            dbHelper.insertContact(image_data, name_data, phone_data, email_data, notes_data, timeStamp, timeStamp);
             Toast.makeText(getContext(), "Contact added", Toast.LENGTH_SHORT).show();
         }
     }
