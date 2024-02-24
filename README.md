@@ -6,6 +6,12 @@ An isolated contact management application integrating MySQL for local contacts 
 
 This project is a contact management application that integrates MySQL for local contacts and Firebase for a dynamic public database. The application is built using Android Studio and is written in Java.
 
+Home (light) |  Home (Dark) | Search (Light) | Search (Dark)
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![Screenshot_20240224-102447_Safesync Contacts](https://github.com/SharafatKarim/SafesyncContacts/assets/93897936/95fec72c-dd41-4ad3-a688-847f18cfaa4f)  |  ![Screenshot_20240224-102512_Safesync Contacts](https://github.com/SharafatKarim/SafesyncContacts/assets/93897936/1e297c71-968e-4e48-8a26-277819f4efbb) | ![Screenshot_20240224-102130_Safesync Contacts](https://github.com/SharafatKarim/SafesyncContacts/assets/93897936/26bb9dd5-7661-488e-8f16-4d5cac611f11) | ![Screenshot_20240224-102051_Safesync Contacts](https://github.com/SharafatKarim/SafesyncContacts/assets/93897936/a62ac98e-2a03-46ee-b126-f5734f5f413c)
+
+
+
 ## Getting Started
 
 Follow these steps to integrate the template into your Android Studio project:
