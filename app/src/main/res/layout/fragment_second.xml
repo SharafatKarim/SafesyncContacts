@@ -226,22 +226,4 @@
         app:layout_constraintEnd_toEndOf="@+id/scrollView2"
         app:layout_constraintStart_toStartOf="parent" />
 
-<!--    <Button-->
-<!--        android:id="@+id/button1"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button 1"-->
-<!--        android:textAllCaps="false"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toLeftOf="@+id/guideline" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/button2"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button 2"-->
-<!--        android:textAllCaps="false"-->
-<!--        app:layout_constraintLeft_toRightOf="@+id/guideline"-->
-<!--        app:layout_constraintRight_toRightOf="parent" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,18 +1,13 @@
 package com.flarestudio.safesynccontacts;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.Manifest;
-import android.app.AlertDialog;
-import android.content.ContentValues;
-import android.content.DialogInterface;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,20 +17,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
-
-import java.util.Objects;
-
 
 public class SecondFragment extends Fragment {
 
+    private static final int REQUEST_READ_CONTACTS_PERMISSION = 1;
     private EditText name, phone, email, notes;
     private DbHelper dbHelper;
 
@@ -52,6 +41,8 @@ public class SecondFragment extends Fragment {
 
         Button insert = view.findViewById(R.id.insertButton);
         Button delete_all = view.findViewById(R.id.deleteButton);
+        Button import_phone = view.findViewById(R.id.importPHONE);
+        ImageView imageView = view.findViewById(R.id.circle_image);
 
         delete_all.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +56,67 @@ public class SecondFragment extends Fragment {
                 saveData();
             }
         });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveDataWithoutImage();
+            }
+        });
+        import_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addPhoneContacts();
+            }
+        });
 
         return view;
+    }
+
+    private void addPhoneContacts() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    REQUEST_READ_CONTACTS_PERMISSION);
+        } else {
+            readContacts();
+        }
+    }
+
+    private void readContacts() {
+        ContentResolver contentResolver = requireActivity().getContentResolver();
+        Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        Cursor cursor = contentResolver.query(uri, null, null, null, null);
+        if (cursor != null) {
+            try {
+                Log.i("CONTACT_PROVIDER_DEMO", "TOTAL # of Contacts  ::: " + cursor.getCount());
+                int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                int emailIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS);
+                int noteIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Note.NOTE);
+                int imageIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO_URI);
+
+                while (cursor.moveToNext()) {
+                    // Check if column indices are valid
+                    if (nameIndex != -1 && numberIndex != -1 && emailIndex != -1 && noteIndex != -1) {
+                        String contactName = cursor.getString(nameIndex);
+                        String contactNumber = cursor.getString(numberIndex);
+                        String image_uri = cursor.getString(imageIndex);
+                        String timeStamp = String.valueOf(System.currentTimeMillis());
+
+                        if (image_uri == null) image_uri = "";
+
+                        dbHelper.insertContact(image_uri, contactName, contactNumber, "", "", timeStamp, timeStamp);
+
+                        Log.i("CONTACT_PROVIDER_DEMO", "Contact Name ::: " + contactName + " Ph #  ::: " + contactNumber + " image ::: " + image_uri);
+                    } else {
+                        Log.e("CONTACT_PROVIDER_DEMO", "Column index not found");
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
     }
 
     private void saveData() {
