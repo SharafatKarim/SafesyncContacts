@@ -78,7 +78,7 @@ public class DbHelper extends SQLiteOpenHelper {
         // create arrayList
         ArrayList<ModelContact> arrayList = new ArrayList<>();
         // sql command query
-        String selectQuery = "SELECT * FROM " + Constants.TABLE_NAME;
+        String selectQuery = "SELECT * FROM " + Constants.TABLE_NAME + " ORDER BY " + Constants.C_NAME + " ASC";
 
         // get readable db
         SQLiteDatabase db = getReadableDatabase();
@@ -136,6 +136,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 contactList.add(modelContact);
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
         db.close();
         return contactList;
 
