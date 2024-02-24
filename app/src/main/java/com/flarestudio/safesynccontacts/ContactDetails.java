@@ -104,6 +104,14 @@ public class ContactDetails extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button share = findViewById(R.id.shareButton);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void loadDataById() {
