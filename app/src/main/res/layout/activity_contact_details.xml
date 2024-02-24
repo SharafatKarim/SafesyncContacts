@@ -248,7 +248,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            android:text="@string/call" />
+            android:text="@string/call"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/messageButton"
@@ -257,7 +258,8 @@
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            android:text="@string/message" />
+            android:text="@string/message"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/shareButton"
@@ -266,7 +268,8 @@
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            android:text="@string/share" />
+            android:text="@string/share"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 
