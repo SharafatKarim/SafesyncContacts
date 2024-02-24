@@ -164,14 +164,11 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="200sp"
+                android:layout_height="500sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notes_BOX" />
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
