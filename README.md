@@ -1,5 +1,10 @@
 # Safesync Contacts
 
+[![Android CI](https://github.com/SharafatKarim/SafesyncContacts/actions/workflows/android.yml/badge.svg)](https://github.com/SharafatKarim/SafesyncContacts/actions/workflows/android.yml) 
+![GitHub License](https://img.shields.io/github/license/SharafatKarim/SafesyncContacts)
+![GitHub forks](https://img.shields.io/github/forks/SharafatKarim/SafesyncContacts)
+![GitHub Repo stars](https://img.shields.io/github/stars/SharafatKarim/SafesyncContacts)
+
 An isolated contact management application integrating MySQL for local contacts and Firebase for a dynamic public database.
 
 ## Overview
