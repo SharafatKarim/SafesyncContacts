@@ -58,4 +58,4 @@ If you encounter any issues or have suggestions for improvements, please [create
 
 ## License
 
-This template is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
