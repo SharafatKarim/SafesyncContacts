@@ -106,12 +106,14 @@ public class ContactDetails extends AppCompatActivity {
             }
         });
 
-        //  TODO :: Share support
         Button share = findViewById(R.id.shareButton);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Name: " + nameTv.getText() +"\nPhone: " + phoneTv.getText());
+                startActivity(shareIntent);
             }
         });
     }
