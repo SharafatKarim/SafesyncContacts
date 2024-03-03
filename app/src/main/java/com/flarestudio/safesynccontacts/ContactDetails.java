@@ -58,6 +58,8 @@ public class ContactDetails extends AppCompatActivity {
         noteTv = findViewById(R.id.notes_BOX);
         profileIv = findViewById(R.id.circle_image);
 
+        loadDataById();
+
         // EVENTS
         // Delete contact
         Button delete = findViewById(R.id.deleteButton);
@@ -71,7 +73,6 @@ public class ContactDetails extends AppCompatActivity {
                 startActivity(parent_intent);
             }
         });
-        loadDataById();
 
         // Call and message
         Button call = findViewById(R.id.callButton);
@@ -105,6 +106,7 @@ public class ContactDetails extends AppCompatActivity {
             }
         });
 
+        //  TODO :: Share support
         Button share = findViewById(R.id.shareButton);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
