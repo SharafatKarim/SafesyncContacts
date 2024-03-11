@@ -226,10 +226,6 @@ public class EditActivity extends AppCompatActivity {
         values.put(MediaStore.Images.Media.TITLE, "IMAGE_TITLE");
         values.put(MediaStore.Images.Media.DESCRIPTION, "IMAGE_DETAIL");
 
-        //save image_uri
-        image_uri = this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-        imageView.setImageURI(image_uri);
-
         //intent to open camera
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
