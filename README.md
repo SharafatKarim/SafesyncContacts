@@ -2,7 +2,7 @@
 
 > [!WARNING]
 > Building from this repository directly is no longer recommended and thus the project is archived. If you want to take this project further,
-> please consider upgrading it's libraries or replacing with something modern. Thanks for visiting :).
+> please consider upgrading it's libraries or replacing with something modern. Thanks for visiting :)
 
 [![Android CI](https://github.com/SharafatKarim/SafesyncContacts/actions/workflows/android.yml/badge.svg)](https://github.com/SharafatKarim/SafesyncContacts/actions/workflows/android.yml) 
 ![GitHub License](https://img.shields.io/github/license/SharafatKarim/SafesyncContacts)
